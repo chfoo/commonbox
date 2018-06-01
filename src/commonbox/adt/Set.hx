@@ -89,6 +89,8 @@ interface MutableSet<T>
         extends Set<T>
         extends BaseMutableSet<T>
         extends Copyable<MutableSet<T>> {
-    /** Removes all items from the set. **/
+    /**
+        Removes all items from the set.
+    **/
     function clear():Void;
 }

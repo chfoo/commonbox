@@ -208,7 +208,7 @@ Development
 To run tests, use the provided hxml for a target:
 
         haxe hxml/test.neko.hxml && neko out/neko/test.n
-        haxe hxml/test.js.hxml && xdg-open file$PWD/test.html
+        haxe hxml/test.js.hxml && xdg-open file://$PWD/test.html
         haxe hxml/test.cpp.hxml && ./out/cpp/TestAll-debug
 
 Or supply your own target and arguments:
