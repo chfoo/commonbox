@@ -63,8 +63,8 @@ class SelectionSort {
             if (smallestNode != sortedNode) {
                 var item = smallestNode.item;
 
-                seq.insertBefore(item, sortedNode);
-                seq.removeNode(smallestNode);
+                sortedNode.insertBefore(item);
+                smallestNode.remove();
             }
         }
     }

@@ -2,6 +2,7 @@ package commonbox.impl;
 
 import commonbox.adt.IIterator;
 import commonbox.adt.Sequence;
+import commonbox.adt.NodeSequence;
 import commonbox.utils.EquatableTools;
 import commonbox.utils.SequenceUtil;
 import haxe.ds.Option;
@@ -12,7 +13,9 @@ using commonbox.utils.OptionTools;
 /**
     Doubly linked list.
 **/
-class LinkedList<T> implements BaseMutableVariableSequence<T> {
+class LinkedList<T>
+        implements BaseMutableVariableSequence<T>
+        implements NodeSequence<T,LinkedListNode<T>> {
     public var length(get, never):Int;
     var _length = 0;
 
@@ -47,7 +50,8 @@ class LinkedList<T> implements BaseMutableVariableSequence<T> {
         nodeAt(SequenceUtil.normalizeIndex(this, index)).item = item;
     }
 
-    public function insertBefore(item:T, referenceNode:LinkedListNode<T>) {
+    @:allow(commonbox.impl.LinkedListNode)
+    function insertBefore(item:T, referenceNode:LinkedListNode<T>) {
         if (!referenceNode.owner.someEquals(this)) {
             throw new Exception("Node does not belong to list");
         }
@@ -148,7 +152,8 @@ class LinkedList<T> implements BaseMutableVariableSequence<T> {
         _removeNode(node);
     }
 
-    public function removeNode(node:LinkedListNode<T>) {
+    @:allow(commonbox.impl.LinkedListNode)
+    function removeNode(node:LinkedListNode<T>) {
         if (!node.owner.someEquals(this)) {
             throw new Exception("Node does not belong to list");
         }
@@ -248,7 +253,7 @@ private class Node<T> {
 }
 
 
-class LinkedListNode<T> {
+class LinkedListNode<T> implements MutableNode<T,LinkedListNode<T>> {
     @:allow(commonbox.impl.LinkedList)
     var node(default, null):Node<T>;
 
@@ -268,6 +273,14 @@ class LinkedListNode<T> {
         return node.item;
     }
 
+    // public function getPrevious() {
+    //     return get_previous();
+    // }
+
+    // public function getNext() {
+    //     return get_next();
+    // }
+
     function get_previous() {
         switch (node.previous) {
             case Some(previousNode):
@@ -284,6 +297,14 @@ class LinkedListNode<T> {
             case None:
                 return None;
         }
+    }
+
+    public function remove() {
+        owner.getSome().removeNode(this);
+    }
+
+    public function insertBefore(item:T) {
+        owner.getSome().insertBefore(item, this);
     }
 }
 
