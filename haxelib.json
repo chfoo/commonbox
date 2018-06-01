@@ -1,0 +1,13 @@
+{
+    "name": "commonbox",
+    "url" : "https://github.com/chfoo/commonbox/",
+    "license": "MIT",
+    "tags": ["cross"],
+    "description": "Unified collections interface to abstract data types and data structures.",
+    "version": "0.1.0",
+    "classPath": "src/",
+    "releasenote": "Initial release",
+    "contributors": ["chfoo"],
+    "dependencies": {
+    }
+  }

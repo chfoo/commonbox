@@ -1,0 +1,3 @@
+-cp src/
+-cp example/
+-main example.example.ExampleReadme

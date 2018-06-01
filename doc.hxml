@@ -1,0 +1,9 @@
+-cp src/
+-xml out/xml/doc.xml
+-D doc-gen
+--macro include('commonbox')
+--no-output
+-neko out/dummy.n
+
+--next
+-cmd haxelib run dox -i out/xml/ -o out/docs/ --include "commonbox" --title "CommonBox API Documentation"
