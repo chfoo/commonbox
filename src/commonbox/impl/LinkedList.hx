@@ -253,7 +253,7 @@ private class Node<T> {
 }
 
 
-class LinkedListNode<T> implements MutableNode<T,LinkedListNode<T>> {
+class LinkedListNode<T> implements NodeSequenceRef<T,LinkedListNode<T>> {
     @:allow(commonbox.impl.LinkedList)
     var node(default, null):Node<T>;
 
@@ -272,14 +272,6 @@ class LinkedListNode<T> implements MutableNode<T,LinkedListNode<T>> {
     function get_item() {
         return node.item;
     }
-
-    // public function getPrevious() {
-    //     return get_previous();
-    // }
-
-    // public function getNext() {
-    //     return get_next();
-    // }
 
     function get_previous() {
         switch (node.previous) {

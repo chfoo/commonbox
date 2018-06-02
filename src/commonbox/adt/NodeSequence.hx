@@ -3,24 +3,32 @@ package commonbox.adt;
 import haxe.ds.Option;
 
 
-interface NodeSequence<T,N:Node<T,N>> {
+/**
+    Sequence that can be have references to its items (nodes).
+**/
+interface NodeSequence<T,N:NodeSequenceRef<T,N>> {
     /**
         Returns the node at given position.
     **/
-    function getNodeAt(index:Int):N;
+    function getNodeAt(index:Int):NodeSequenceRef<T,N>;
 }
 
 
-interface Node<T,N:Node<T,N>> {
-    var item(get, never):T;
+interface NodeSequenceRef<T,N:NodeSequenceRef<T,N>> extends ElementRef<T> {
+    /**
+        Next node in the sequence.
+    **/
     var next(get, never):Option<N>;
+
+    /**
+        Previous node in the sequence.
+    **/
     var previous(get, never):Option<N>;
-}
 
-
-interface MutableNode<T,N:MutableNode<T,N>> extends Node<T,N> {
     /**
         Removes the node from the sequence.
+
+        This instance cannot be used after calling this method.
     **/
     function remove():Void;
 
