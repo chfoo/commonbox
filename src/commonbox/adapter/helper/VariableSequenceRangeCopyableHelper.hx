@@ -2,6 +2,7 @@ package commonbox.adapter.helper;
 
 import commonbox.adt.Collection;
 import commonbox.adt.Sequence;
+import commonbox.adt.VariableSequence;
 import commonbox.utils.SequenceUtil;
 
 

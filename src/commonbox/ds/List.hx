@@ -1,10 +1,10 @@
 package commonbox.ds;
 
-import commonbox.adt.Collection;
-import commonbox.adt.Sequence;
-import commonbox.adt.NodeSequence;
-import commonbox.impl.LinkedList;
 import commonbox.adapter.VariableSequenceUpgrade;
+import commonbox.adt.Collection;
+import commonbox.adt.NodeSequence;
+import commonbox.adt.VariableSequence;
+import commonbox.impl.LinkedList;
 
 
 /**

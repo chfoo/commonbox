@@ -1,6 +1,6 @@
 package commonbox.testutils;
 
-import commonbox.adt.Sequence;
+import commonbox.adt.VariableSequence;
 import utest.Assert;
 
 

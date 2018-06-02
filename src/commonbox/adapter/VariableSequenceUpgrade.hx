@@ -6,6 +6,7 @@ import commonbox.adt.Collection;
 import commonbox.adt.IIterator;
 import commonbox.adt.immutable.Sequence.BaseSequence as ImmutableBaseSequence;
 import commonbox.adt.Sequence;
+import commonbox.adt.VariableSequence;
 import haxe.ds.Option;
 
 

@@ -4,7 +4,7 @@ import Array as StdArray;
 import commonbox.adapter.ArrayWrapper;
 import commonbox.adapter.VariableSequenceUpgrade;
 import commonbox.adt.Collection;
-import commonbox.adt.Sequence;
+import commonbox.adt.VariableSequence;
 
 
 /**

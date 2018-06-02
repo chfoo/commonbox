@@ -1,7 +1,7 @@
 package commonbox.impl;
 
 import commonbox.adt.IIterator;
-import commonbox.adt.Sequence;
+import commonbox.adt.VariableSequence;
 import commonbox.adt.NodeSequence;
 import commonbox.utils.EquatableTools;
 import commonbox.utils.SequenceUtil;
