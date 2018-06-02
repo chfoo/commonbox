@@ -39,3 +39,10 @@ class NotFoundException extends Exception {
 **/
 class InvalidStateException extends Exception {
 }
+
+
+/**
+    Thrown when the collection is full.
+**/
+class FullException extends InvalidStateException {
+}
