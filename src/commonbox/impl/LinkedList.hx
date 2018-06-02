@@ -14,7 +14,7 @@ using commonbox.utils.OptionTools;
     Doubly linked list.
 **/
 class LinkedList<T>
-        implements BaseMutableVariableSequence<T>
+        implements BaseVariableSequence<T>
         implements NodeSequence<T,LinkedListNode<T>> {
     public var length(get, never):Int;
     var _length = 0;

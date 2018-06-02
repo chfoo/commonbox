@@ -1,6 +1,6 @@
 package commonbox.ds;
 
-import commonbox.adapter.MutableMappingUpgrade;
+import commonbox.adapter.MappingUpgrade;
 import commonbox.adt.Mapping;
 import commonbox.impl.AnyKeyArrayMap;
 
@@ -17,8 +17,8 @@ import commonbox.impl.AnyKeyArrayMap;
     | length | O(1) |
     | get/set/remove | O(n) |
 **/
-class AnyMap<K,V> extends MutableMappingUpgrade<K,V>
-        implements MutableMapping<K,V> {
+class AnyMap<K,V> extends MappingUpgrade<K,V>
+        implements Mapping<K,V> {
     public function new() {
         super(new AnyKeyArrayMap(), AnyKeyArrayMap.new);
     }

@@ -10,7 +10,7 @@ import haxe.ds.Option;
 /**
     Wraps a `haxe.Constraints.IMap`.
 **/
-class MapWrapper<K,V> implements BaseMutableMapping<K,V> {
+class MapWrapper<K,V> implements BaseMapping<K,V> {
     public var length(get, never):Int;
 
     var innerMap:IMap<K,V>;

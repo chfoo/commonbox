@@ -4,7 +4,7 @@ import commonbox.adt.Collection;
 import commonbox.adt.Sequence;
 import commonbox.adt.NodeSequence;
 import commonbox.impl.LinkedList;
-import commonbox.adapter.MutableVariableSequenceUpgrade;
+import commonbox.adapter.VariableSequenceUpgrade;
 
 
 /**
@@ -18,9 +18,9 @@ import commonbox.adapter.MutableVariableSequenceUpgrade;
     | insertNode/removeNode | O(1) |
 **/
 class List<T>
-        implements MutableVariableSequence<T>
+        implements VariableSequence<T>
         implements NodeSequence<T,LinkedListNode<T>>
-        extends MutableVariableSequenceUpgrade<T> {
+        extends VariableSequenceUpgrade<T> {
     var innerSequence:LinkedList<T>;
 
     public function new() {

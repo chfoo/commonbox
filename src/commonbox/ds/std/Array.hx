@@ -2,7 +2,7 @@ package commonbox.ds.std;
 
 import Array as StdArray;
 import commonbox.adapter.ArrayWrapper;
-import commonbox.adapter.MutableVariableSequenceUpgrade;
+import commonbox.adapter.VariableSequenceUpgrade;
 import commonbox.adt.Collection;
 import commonbox.adt.Sequence;
 
@@ -30,8 +30,8 @@ abstract Array<T>(ArrayImpl<T>) to ArrayImpl<T>
 }
 
 
-class ArrayImpl<T> extends MutableVariableSequenceUpgrade<T>
-        implements MutableVariableSequence<T>
+class ArrayImpl<T> extends VariableSequenceUpgrade<T>
+        implements VariableSequence<T>
         implements StandardDataStructureWrapper<StdArray<T>> {
     var _stdDS:StdArray<T>;
 
@@ -55,12 +55,12 @@ class ArrayImpl<T> extends MutableVariableSequenceUpgrade<T>
     }
 
     override public function concat(other:Collection<T>)
-            :MutableVariableSequence<T> {
+            :VariableSequence<T> {
         if (Std.is(other, ArrayImpl)) {
             var otherArray:ArrayImpl<T> = cast other;
             var newArray = _stdDS.concat(otherArray.getUnderlyingArray());
 
-            return new MutableVariableSequenceUpgrade(
+            return new VariableSequenceUpgrade(
                 new ArrayWrapper(newArray),
                 sequenceFactory
             );
@@ -71,7 +71,7 @@ class ArrayImpl<T> extends MutableVariableSequenceUpgrade<T>
     }
 
     override public function slice(index:Int, ?endIndex:Int) {
-        return new MutableVariableSequenceUpgrade(
+        return new VariableSequenceUpgrade(
             new ArrayWrapper(_stdDS.slice(index, endIndex)),
             sequenceFactory
         );

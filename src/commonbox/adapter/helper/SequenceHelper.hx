@@ -1,92 +1,41 @@
 package commonbox.adapter.helper;
 
+import commonbox.adapter.helper.immutable.SequenceHelper as ImmutableSequenceHelper;
 import commonbox.adt.Sequence;
-import haxe.ds.Option;
+import commonbox.impl.LinkedList;
+import commonbox.impl.sorting.MergeSort;
+import commonbox.impl.sorting.SelectionSort;
+import commonbox.utils.Comparer;
 
-using commonbox.utils.IteratorTools;
-using commonbox.utils.EquatableTools;
 
+class SequenceHelper<T,S:BaseSequence<T>>
+        extends ImmutableSequenceHelper<T,S> {
 
-class SequenceHelper<T,S:BaseSequence<T>> {
-    var sequence:S;
+    public function reverse() {
+        for (indexA in 0...Std.int(sequence.length / 2)) {
+            var indexB = sequence.length - 1 - indexA;
+            var itemA = sequence.get(indexA);
+            var itemB = sequence.get(indexB);
 
-    public function new(sequence:S) {
-        this.sequence = sequence;
+            sequence.set(indexA, itemB);
+            sequence.set(indexB, itemA);
+        }
     }
 
-    public function contentEquals(other:BaseSequence<T>):Bool {
-        if (sequence.length != other.length) {
-            return false;
+    public function sort(?comparer:T->T->Int) {
+        if (comparer == null) {
+            comparer = Comparer.compare.bind(_, _, null);
         }
 
-        for (index in 0...sequence.length) {
-            var itemA = sequence.get(index);
-            var itemB = other.get(index);
-
-            if (!itemA.equals(itemB)) {
-                return false;
+        if (sequence.length <= 32) {
+            if (Std.is(sequence, LinkedList)) {
+                SelectionSort.listInsertSort(cast sequence, comparer);
+            } else {
+                SelectionSort.swapSort(sequence, comparer);
             }
-        }
-
-        return true;
-    }
-
-    public function first():T {
-        if (sequence.length > 0) {
-            return sequence.get(0);
         } else {
-            throw new Exception.OutOfBoundsException();
+            // TODO: linked list version
+            MergeSort.sort(sequence, comparer);
         }
-    }
-
-    public function firstOption():Option<T> {
-        if (sequence.length > 0) {
-            return Some(sequence.get(0));
-        } else {
-            return None;
-        }
-    }
-
-    public function last():T {
-        if (sequence.length > 0) {
-            return sequence.get(sequence.length - 1);
-        } else {
-            throw new Exception.OutOfBoundsException();
-        }
-    }
-
-    public function lastOption():Option<T> {
-        if (sequence.length > 0) {
-            return Some(sequence.get(sequence.length - 1));
-        } else {
-            return None;
-        }
-    }
-
-    public function indexOf(item:T, ?fromIndex:Int):Option<Int> {
-        return sequence.iterator().indexOf(item, fromIndex);
-    }
-
-    public function isEmpty():Bool {
-        return sequence.length == 0;
-    }
-
-    public function toString():String {
-        var buf = new StringBuf();
-        buf.add("[Sequence:");
-
-        var iterator = sequence.iterator();
-
-        for (item in iterator) {
-            buf.add(Std.string(item));
-
-            if (iterator.hasNext()) {
-                buf.add(", ");
-            }
-        }
-
-        buf.add("]");
-
-        return buf.toString();
     }
 }

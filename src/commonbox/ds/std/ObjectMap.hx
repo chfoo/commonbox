@@ -1,7 +1,7 @@
 package commonbox.ds.std;
 
 import commonbox.adapter.MapWrapper;
-import commonbox.adapter.MutableMappingUpgrade;
+import commonbox.adapter.MappingUpgrade;
 import commonbox.adt.Mapping;
 import haxe.ds.ObjectMap as StdObjectMap;
 
@@ -9,8 +9,8 @@ import haxe.ds.ObjectMap as StdObjectMap;
 /**
     Mapping using standard `haxe.ds.ObjectMap` as the implementation.
 **/
-class ObjectMap<K:{},V> extends MutableMappingUpgrade<K,V>
-        implements MutableMapping<K,V>
+class ObjectMap<K:{},V> extends MappingUpgrade<K,V>
+        implements Mapping<K,V>
         implements StandardDataStructureWrapper<StdObjectMap<K,V>> {
     var _stdDS:StdObjectMap<K,V>;
 

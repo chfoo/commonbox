@@ -1,7 +1,7 @@
 package commonbox.ds.std;
 
 import commonbox.adapter.MapWrapper;
-import commonbox.adapter.MutableMappingUpgrade;
+import commonbox.adapter.MappingUpgrade;
 import commonbox.adt.Mapping;
 import haxe.ds.StringMap as StdStringMap;
 
@@ -9,8 +9,8 @@ import haxe.ds.StringMap as StdStringMap;
 /**
     Mapping using standard `haxe.ds.StringMap` as the implementation.
 **/
-class StringMap<V> extends MutableMappingUpgrade<String,V>
-        implements MutableMapping<String,V>
+class StringMap<V> extends MappingUpgrade<String,V>
+        implements Mapping<String,V>
         implements StandardDataStructureWrapper<StdStringMap<V>> {
     var _stdDS:StdStringMap<V>;
 

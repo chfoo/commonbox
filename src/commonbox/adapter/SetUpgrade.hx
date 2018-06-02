@@ -3,25 +3,26 @@ package commonbox.adapter;
 import commonbox.adapter.helper.SetHelper;
 import commonbox.adt.IIterator;
 import commonbox.adt.Set;
+import commonbox.adt.immutable.Set.BaseSet as ImmutableBaseSet;
 import commonbox.impl.MapSet;
 
 
 /**
-    Wraps `BaseMutableSet` object to implement `MutableSet`.
+    Wraps `BaseSet` object to implement `Set`.
 **/
-class MutableSetUpgrade<T> implements MutableSet<T> {
+class SetUpgrade<T> implements Set<T> {
     public var length(get, never):Int;
 
-    var innerSet:BaseMutableSet<T>;
-    var helper:MutableSetHelper<T>;
-    var setFactory:Void->BaseMutableSet<T>;
+    var innerSet:BaseSet<T>;
+    var helper:SetHelper<T>;
+    var setFactory:Void->BaseSet<T>;
 
     public function new(
-            set:BaseMutableSet<T>,
-            setFactory:Void->BaseMutableSet<T>) {
+            set:BaseSet<T>,
+            setFactory:Void->BaseSet<T>) {
         this.innerSet = set;
         this.setFactory = setFactory;
-        helper = new MutableSetHelper<T>(set, setFactory);
+        helper = new SetHelper<T>(set, setFactory);
     }
 
     function get_length():Int {
@@ -44,20 +45,20 @@ class MutableSetUpgrade<T> implements MutableSet<T> {
         return innerSet.remove(item);
     }
 
-    public function union(other:Set<T>):MutableSet<T> {
-        return new MutableSetUpgrade(helper.union(other), setFactory);
+    public function union(other:ImmutableBaseSet<T>):Set<T> {
+        return new SetUpgrade(helper.union(other), setFactory);
     }
 
-    public function intersection(other:Set<T>):MutableSet<T> {
-        return new MutableSetUpgrade(helper.intersection(other), setFactory);
+    public function intersection(other:ImmutableBaseSet<T>):Set<T> {
+        return new SetUpgrade(helper.intersection(other), setFactory);
     }
 
-    public function difference(other:Set<T>):MutableSet<T> {
-        return new MutableSetUpgrade(helper.difference(other), setFactory);
+    public function difference(other:ImmutableBaseSet<T>):Set<T> {
+        return new SetUpgrade(helper.difference(other), setFactory);
     }
 
-    public function symmetricDifference(other:Set<T>):MutableSet<T> {
-        return new MutableSetUpgrade(
+    public function symmetricDifference(other:ImmutableBaseSet<T>):Set<T> {
+        return new SetUpgrade(
             helper.symmetricDifference(other), setFactory);
     }
 
@@ -65,23 +66,23 @@ class MutableSetUpgrade<T> implements MutableSet<T> {
         return helper.isEmpty();
     }
 
-    public function isDisjoint(other:Set<T>):Bool {
+    public function isDisjoint(other:ImmutableBaseSet<T>):Bool {
         return helper.isDisjoint(other);
     }
 
-    public function isSubset(other:Set<T>):Bool {
+    public function isSubset(other:ImmutableBaseSet<T>):Bool {
         return helper.isSubset(other);
     }
 
-    public function isProperSubset(other:Set<T>):Bool {
+    public function isProperSubset(other:ImmutableBaseSet<T>):Bool {
         return helper.isProperSubset(other);
     }
 
-    public function isSuperset(other:Set<T>):Bool {
+    public function isSuperset(other:ImmutableBaseSet<T>):Bool {
         return helper.isSuperset(other);
     }
 
-    public function isProperSuperset(other:Set<T>):Bool {
+    public function isProperSuperset(other:ImmutableBaseSet<T>):Bool {
         return helper.isProperSuperset(other);
     }
 
@@ -89,18 +90,18 @@ class MutableSetUpgrade<T> implements MutableSet<T> {
         return helper.clear();
     }
 
-    public function contentEquals(other:Set<T>):Bool {
+    public function contentEquals(other:ImmutableBaseSet<T>):Bool {
         return helper.contentEquals(other);
     }
 
-    public function copy():MutableSet<T> {
+    public function copy():Set<T> {
         var newSet = new MapSet<T>();
 
         for (item in innerSet) {
             newSet.add(item);
         }
 
-        return new MutableSetUpgrade(newSet, setFactory);
+        return new SetUpgrade(newSet, setFactory);
     }
 
     public function toString() {

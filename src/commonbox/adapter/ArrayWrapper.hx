@@ -8,7 +8,7 @@ import commonbox.utils.SequenceUtil;
 /**
     Wraps a standard Haxe Array.
 **/
-class ArrayWrapper<T> implements BaseMutableVariableSequence<T> {
+class ArrayWrapper<T> implements BaseVariableSequence<T> {
     public var length(get, never):Int;
     var innerArray:Array<T>;
 

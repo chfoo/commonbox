@@ -3,25 +3,26 @@ package commonbox.adapter;
 import commonbox.adapter.helper.MappingHelper;
 import commonbox.adt.IIterator;
 import commonbox.adt.Mapping;
+import commonbox.adt.immutable.Mapping.BaseMapping as ImmutableBaseMapping;
 import haxe.ds.Option;
 
 
 /**
-    Wraps `BaseMutableMapping` object to implement `MutableMapping`.
+    Wraps `BaseMapping` object to implement `Mapping`.
 **/
-class MutableMappingUpgrade<K,V> implements MutableMapping<K,V> {
+class MappingUpgrade<K,V> implements Mapping<K,V> {
     public var length(get, never):Int;
 
-    var innerMapping:BaseMutableMapping<K,V>;
-    var mapFactory:Void->BaseMutableMapping<K,V>;
-    var helper:MutableMappingHelper<K,V>;
+    var innerMapping:BaseMapping<K,V>;
+    var mapFactory:Void->BaseMapping<K,V>;
+    var helper:MappingHelper<K,V>;
 
     public function new(
-            mapping:BaseMutableMapping<K,V>,
-            mapFactory:Void->BaseMutableMapping<K,V>) {
+            mapping:BaseMapping<K,V>,
+            mapFactory:Void->BaseMapping<K,V>) {
         this.innerMapping = mapping;
         this.mapFactory = mapFactory;
-        helper = new MutableMappingHelper(mapping);
+        helper = new MappingHelper(mapping);
     }
 
     function get_length():Int {
@@ -67,18 +68,18 @@ class MutableMappingUpgrade<K,V> implements MutableMapping<K,V> {
         return helper.isEmpty();
     }
 
-    public function contentEquals(other:BaseMapping<K,V>):Bool {
+    public function contentEquals(other:ImmutableBaseMapping<K,V>):Bool {
         return helper.contentEquals(other);
     }
 
-    public function copy():MutableMapping<K,V> {
+    public function copy():Mapping<K,V> {
         var newMap = mapFactory();
 
         for (key in keys()) {
             newMap.set(key, getOnly(key));
         }
 
-        return new MutableMappingUpgrade(newMap, mapFactory);
+        return new MappingUpgrade(newMap, mapFactory);
     }
 
     public function clear() {

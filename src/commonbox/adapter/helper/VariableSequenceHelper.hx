@@ -8,14 +8,14 @@ import haxe.ds.Option;
 using commonbox.utils.EquatableTools;
 
 
-class MutableVariableSequenceHelper<T,S:BaseMutableVariableSequence<T>>
-        extends MutableSequenceHelper<T,S> {
+class VariableSequenceHelper<T,S:BaseVariableSequence<T>>
+        extends SequenceHelper<T,S> {
 
-    var sequenceFactory:Void->BaseMutableVariableSequence<T>;
+    var sequenceFactory:Void->BaseVariableSequence<T>;
 
     public function new(
             sequence:S,
-            sequenceFactory:Void->BaseMutableVariableSequence<T>) {
+            sequenceFactory:Void->BaseVariableSequence<T>) {
         super(sequence);
         this.sequenceFactory = sequenceFactory;
     }
@@ -48,7 +48,7 @@ class MutableVariableSequenceHelper<T,S:BaseMutableVariableSequence<T>>
         }
     }
 
-    public function splice(index:Int, count:Int):BaseMutableVariableSequence<T> {
+    public function splice(index:Int, count:Int):BaseVariableSequence<T> {
         var index = SequenceUtil.normalizeInsertIndex(sequence, index);
         var target = sequenceFactory();
 

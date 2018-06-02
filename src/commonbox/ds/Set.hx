@@ -1,9 +1,9 @@
 package commonbox.ds;
 
 import commonbox.adt.Collection;
-import commonbox.adt.Set;
+import commonbox.adt.Set as ISet;
 import commonbox.impl.MapSet;
-import commonbox.adapter.MutableSetUpgrade;
+import commonbox.adapter.SetUpgrade;
 
 
 /**
@@ -15,7 +15,7 @@ import commonbox.adapter.MutableSetUpgrade;
     | length | O(1) |
     | add/remove | O(1) average. O(n) for Any/Dynamic. |
 **/
-class Set<T> extends MutableSetUpgrade<T> implements MutableSet<T> {
+class Set<T> extends SetUpgrade<T> implements ISet<T> {
     public function new() {
         super(new MapSet(), MapSet.new);
     }

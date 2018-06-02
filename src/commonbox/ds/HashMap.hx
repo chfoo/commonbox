@@ -3,7 +3,7 @@ package commonbox.ds;
 import commonbox.adt.Equatable;
 import commonbox.adt.Mapping;
 import commonbox.impl.IntBucketMap;
-import commonbox.adapter.MutableMappingUpgrade;
+import commonbox.adapter.MappingUpgrade;
 
 
 /**
@@ -23,8 +23,8 @@ import commonbox.adapter.MutableMappingUpgrade;
     | length | O(1) |
     | get/set/remove |  O(1) average |
 **/
-class HashMap<K:Equatable,V> extends MutableMappingUpgrade<K,V>
-        implements MutableMapping<K,V> {
+class HashMap<K:Equatable,V> extends MappingUpgrade<K,V>
+        implements Mapping<K,V> {
     public function new() {
         super(new IntBucketMap(), IntBucketMap.new);
     }

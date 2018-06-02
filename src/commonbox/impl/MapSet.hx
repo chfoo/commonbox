@@ -8,7 +8,7 @@ import commonbox.ds.AutoMap;
 /**
     Set that uses a map as its implementation.
 **/
-class MapSet<T> implements BaseMutableSet<T> {
+class MapSet<T> implements BaseSet<T> {
     public var length(get, never):Int;
     var _length = 0;
     var innerMap:AutoMap<T,Int>;

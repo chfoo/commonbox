@@ -5,9 +5,9 @@ import utest.Assert;
 
 
 class VariableSequenceTester {
-    var sequenceFactory:Void->MutableVariableSequence<Any>;
+    var sequenceFactory:Void->VariableSequence<Any>;
 
-    public function new(sequenceFactory:Void->MutableVariableSequence<Any>) {
+    public function new(sequenceFactory:Void->VariableSequence<Any>) {
         this.sequenceFactory = sequenceFactory;
     }
 

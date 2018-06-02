@@ -12,7 +12,7 @@ import haxe.ds.Option;
 
     All operations are O(n).
 **/
-class AnyKeyArrayMap<K,V> implements BaseMutableMapping<K,V> {
+class AnyKeyArrayMap<K,V> implements BaseMapping<K,V> {
     public var length(get, never):Int;
 
     var _keys:Array<K>;

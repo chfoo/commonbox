@@ -1,31 +1,32 @@
 package commonbox.adapter;
 
-import commonbox.adapter.helper.MutableVariableSequenceHelper;
-import commonbox.adapter.helper.SequenceRangeCopyableHelper;
+import commonbox.adapter.helper.VariableSequenceHelper;
+import commonbox.adapter.helper.VariableSequenceRangeCopyableHelper;
 import commonbox.adt.Collection;
 import commonbox.adt.IIterator;
+import commonbox.adt.immutable.Sequence.BaseSequence as ImmutableBaseSequence;
 import commonbox.adt.Sequence;
 import haxe.ds.Option;
 
 
 /**
-    Wraps `BaseMutableVariableSequence` object to implement `MutableVariableSequence`.
+    Wraps `BaseVariableSequence` object to implement `VariableSequence`.
 **/
-class MutableVariableSequenceUpgrade<T> implements MutableVariableSequence<T> {
+class VariableSequenceUpgrade<T> implements VariableSequence<T> {
     public var length(get, never):Int;
 
-    var sequence:BaseMutableVariableSequence<T>;
-    var sequenceFactory:Void->BaseMutableVariableSequence<T>;
-    var helper:MutableVariableSequenceHelper<T,BaseMutableVariableSequence<T>>;
+    var sequence:BaseVariableSequence<T>;
+    var sequenceFactory:Void->BaseVariableSequence<T>;
+    var helper:VariableSequenceHelper<T,BaseVariableSequence<T>>;
     var rangeCopyHelper:VariableSequenceRangeCopyableHelper<T>;
 
     public function new(
-            sequence:BaseMutableVariableSequence<T>,
-            sequenceFactory:Void->BaseMutableVariableSequence<T>) {
+            sequence:BaseVariableSequence<T>,
+            sequenceFactory:Void->BaseVariableSequence<T>) {
         this.sequence = sequence;
         this.sequenceFactory = sequenceFactory;
 
-        helper = new MutableVariableSequenceHelper(sequence, sequenceFactory);
+        helper = new VariableSequenceHelper(sequence, sequenceFactory);
         rangeCopyHelper = new VariableSequenceRangeCopyableHelper(
             sequence, sequenceFactory);
     }
@@ -83,27 +84,27 @@ class MutableVariableSequenceUpgrade<T> implements MutableVariableSequence<T> {
         helper.sort(comparer);
     }
 
-    public function contentEquals(other:BaseSequence<T>):Bool {
+    public function contentEquals(other:ImmutableBaseSequence<T>):Bool {
         return helper.contentEquals(other);
     }
 
-    public function copy():MutableVariableSequence<T> {
+    public function copy():VariableSequence<T> {
         var newSeq = sequenceFactory();
 
         for (item in sequence) {
             newSeq.insert(newSeq.length, item);
         }
 
-        return new MutableVariableSequenceUpgrade(newSeq, sequenceFactory);
+        return new VariableSequenceUpgrade(newSeq, sequenceFactory);
     }
 
-    public function slice(index:Int, ?endIndex:Int):MutableVariableSequence<T> {
-        return new MutableVariableSequenceUpgrade(
+    public function slice(index:Int, ?endIndex:Int):VariableSequence<T> {
+        return new VariableSequenceUpgrade(
             rangeCopyHelper.slice(index, endIndex), sequenceFactory);
     }
 
-    public function concat(other:Collection<T>):MutableVariableSequence<T> {
-        return new MutableVariableSequenceUpgrade(
+    public function concat(other:Collection<T>):VariableSequence<T> {
+        return new VariableSequenceUpgrade(
             rangeCopyHelper.concat(other), sequenceFactory);
     }
 
@@ -130,8 +131,8 @@ class MutableVariableSequenceUpgrade<T> implements MutableVariableSequence<T> {
         return helper.unshift();
     }
 
-    public function splice(index:Int, count:Int):MutableVariableSequence<T> {
-        return new MutableVariableSequenceUpgrade(
+    public function splice(index:Int, count:Int):VariableSequence<T> {
+        return new VariableSequenceUpgrade(
             helper.splice(index, count), sequenceFactory);
     }
 

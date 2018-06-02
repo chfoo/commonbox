@@ -9,7 +9,7 @@ import haxe.ds.Vector;
 /**
     Wraps a Haxe `haxe.ds.Vector`.
 **/
-class VectorWrapper<T> implements BaseMutableSequence<T> {
+class VectorWrapper<T> implements BaseSequence<T> {
     public var length(get, never):Int;
     var innerVector:Vector<T>;
 

@@ -7,10 +7,10 @@ using commonbox.utils.IteratorTools;
 
 
 class MappingTester<K> {
-    var mapping:MutableMapping<K,Any>;
+    var mapping:Mapping<K,Any>;
     var keyGenerator:Int->K;
 
-    public function new(mappingFactory:Void->MutableMapping<K,Any>, keyGenerator:Int->K) {
+    public function new(mappingFactory:Void->Mapping<K,Any>, keyGenerator:Int->K) {
         this.mapping = mappingFactory();
         this.keyGenerator = keyGenerator;
     }

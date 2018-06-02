@@ -1,6 +1,6 @@
 package commonbox.ds.std;
 
-import commonbox.adapter.MutableSequenceUpgrade;
+import commonbox.adapter.SequenceUpgrade;
 import commonbox.adapter.VectorWrapper;
 import commonbox.adt.Sequence;
 import haxe.ds.Vector as StdVector;
@@ -29,8 +29,8 @@ abstract Vector<T>(VectorImpl<T>) to VectorImpl<T>
 }
 
 
-class VectorImpl<T> extends MutableSequenceUpgrade<T>
-        implements MutableSequence<T>
+class VectorImpl<T> extends SequenceUpgrade<T>
+        implements Sequence<T>
         implements StandardDataStructureWrapper<StdVector<T>> {
     var _stdDS:StdVector<T>;
 

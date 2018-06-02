@@ -6,13 +6,13 @@ import utest.Assert;
 
 
 class SequenceTester {
-    var sequence:MutableSequence<Any>;
+    var sequence:Sequence<Any>;
     var itemA:Int;
     var itemB:Coordinate;
     var itemC:String;
-    var sequenceFactory:Int->MutableSequence<Any>;
+    var sequenceFactory:Int->Sequence<Any>;
 
-    public function new(sequenceFactory:Int->MutableSequence<Any>) {
+    public function new(sequenceFactory:Int->Sequence<Any>) {
         this.sequence = sequenceFactory(3);
         this.sequenceFactory = sequenceFactory;
     }
@@ -128,7 +128,7 @@ class SequenceTester {
     }
 
     function testSortSmall() {
-        var sequence:MutableSequence<Coordinate> = cast sequenceFactory(8);
+        var sequence:Sequence<Coordinate> = cast sequenceFactory(8);
         var nums = [32, 99, 68, 40, 72, -21, 8, -21];
 
         for (index in 0...nums.length) {

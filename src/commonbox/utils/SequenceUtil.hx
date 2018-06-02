@@ -1,6 +1,6 @@
 package commonbox.utils;
 
-import commonbox.adt.Sequence;
+import commonbox.adt.immutable.Sequence;
 
 using commonbox.utils.IteratorTools;
 

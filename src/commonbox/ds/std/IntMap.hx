@@ -1,7 +1,7 @@
 package commonbox.ds.std;
 
 import commonbox.adapter.MapWrapper;
-import commonbox.adapter.MutableMappingUpgrade;
+import commonbox.adapter.MappingUpgrade;
 import commonbox.adt.Mapping;
 import haxe.ds.IntMap as StdIntMap;
 
@@ -9,8 +9,8 @@ import haxe.ds.IntMap as StdIntMap;
 /**
     Mapping using standard `haxe.ds.IntMap` as the implementation.
 **/
-class IntMap<V> extends MutableMappingUpgrade<Int,V>
-        implements MutableMapping<Int,V>
+class IntMap<V> extends MappingUpgrade<Int,V>
+        implements Mapping<Int,V>
         implements StandardDataStructureWrapper<StdIntMap<V>> {
     var _stdDS:StdIntMap<V>;
 

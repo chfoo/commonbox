@@ -5,7 +5,7 @@ import commonbox.adt.Sequence;
 
 class SelectionSort {
     // https://en.wikipedia.org/wiki/Selection_sort
-    public static function swapSort<T>(seq:BaseMutableSequence<T>,
+    public static function swapSort<T>(seq:BaseSequence<T>,
             comparer:T->T->Int) {
         if (seq.length <= 1) {
             return;

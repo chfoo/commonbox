@@ -1,26 +1,12 @@
 package commonbox.adt;
 
+import commonbox.adt.immutable.Sequence as ImmutableSequence;
+import commonbox.adt.immutable.Sequence.BaseSequence as ImmutableBaseSequence;
+import commonbox.adt.immutable.Sequence.SequenceRangeCopyable;
 import haxe.ds.Option;
 
-/**
-    Ordered collection of items.
-**/
-interface BaseSequence<T> extends Collection<T> {
-    /**
-        Returns the item at the given position.
 
-        The sequence is addressed by indexes from 0 to `length - 1` inclusive.
-        If a negative index is provided, it is computed to be an offset from
-        the end of the sequence (`length - index`).
-        If the computed index is not valid, `OutOfBoundsException` is thrown.
-
-        @param index Position of item.
-    **/
-    function get(index:Int):T;
-}
-
-
-interface BaseMutableSequence<T> extends BaseSequence<T> {
+interface BaseSequence<T> extends ImmutableBaseSequence<T> {
     /**
         Replaces the item at the given position with the given item.
 
@@ -33,7 +19,7 @@ interface BaseMutableSequence<T> extends BaseSequence<T> {
 }
 
 
-interface BaseMutableVariableSequence<T> extends BaseMutableSequence<T> {
+interface BaseVariableSequence<T> extends BaseSequence<T> {
     /**
         Inserts the given item at the given position.
 
@@ -63,88 +49,12 @@ interface BaseMutableVariableSequence<T> extends BaseMutableSequence<T> {
 }
 
 
-interface SequenceRangeCopyable<T,S> extends BaseSequence<T> {
-    /**
-        Returns a new sequence containing the given range.
-
-        Accepted index ranges are the same as in `BaseMutableVariableSequence.insert`.
-
-        @param index Starting range.
-        @param endIndex Ending range (not inclusive).
-    **/
-    function slice(index:Int, ?endIndex:Int):S;
-
-    /**
-        Returns a new sequence containing the sequence's items and
-        the given collection's items.
-
-        @param other Items to be placed after this sequence's items.
-    **/
-    function concat(other:Collection<T>):S;
-}
-
 
 interface Sequence<T>
+        extends ImmutableSequence<T>
         extends BaseSequence<T>
         extends Copyable<Sequence<T>>
         extends SequenceRangeCopyable<T,Sequence<T>>
-        {
-    /**
-        Returns the first item in the sequence.
-
-        If the sequence is empty, `OutOfBoundsException` is thrown.
-    **/
-    function first():T;
-
-    /**
-        Returns the first item in the sequence.
-    **/
-    function firstOption():Option<T>;
-
-    /**
-        Returns the `length - 1`-th item in the sequence.
-
-        If the sequence is empty, `OutOfBoundsException` is thrown.
-    **/
-    function last():T;
-
-    /**
-        Returns the `length - 1`-th item in the sequence.
-    **/
-    function lastOption():Option<T>;
-
-    /**
-        Returns the position of first occurrence of the given item.
-
-        This method accepts items implementing `Equatable`.
-
-        @param item Item to be searched.
-        @param fromIndex If given, the search is begin at the given index.
-            Otherwise, the search starts at index 0.
-    **/
-    function indexOf(item:T, ?fromIndex:Int):Option<Int>;
-
-    /**
-        Returns whether the sequence is empty.
-    **/
-    function isEmpty():Bool;
-
-    /**
-        Returns whether the given contains the same items in order.
-
-        This method accepts items implementing `Equatable`.
-
-        @param other Another ordered sequence.
-    **/
-    function contentEquals(other:BaseSequence<T>):Bool;
-}
-
-
-interface MutableSequence<T>
-        extends Sequence<T>
-        extends BaseMutableSequence<T>
-        extends Copyable<MutableSequence<T>>
-        extends SequenceRangeCopyable<T,MutableSequence<T>>
         {
     /**
         Reverses the positions of the items in the sequence.
@@ -163,12 +73,12 @@ interface MutableSequence<T>
 }
 
 
-interface MutableVariableSequence<T>
+interface VariableSequence<T>
+        extends ImmutableSequence<T>
         extends Sequence<T>
-        extends MutableSequence<T>
-        extends BaseMutableVariableSequence<T>
-        extends Copyable<MutableVariableSequence<T>>
-        extends SequenceRangeCopyable<T,MutableVariableSequence<T>>
+        extends BaseVariableSequence<T>
+        extends Copyable<VariableSequence<T>>
+        extends SequenceRangeCopyable<T,VariableSequence<T>>
         {
     /**
         Adds the given item to the end of the sequence.
@@ -198,7 +108,7 @@ interface MutableVariableSequence<T>
         @param index Beginning of the range.
         @param count Number of items. It is clamped if it is out of range.
     **/
-    function splice(index:Int, count:Int):MutableVariableSequence<T>;
+    function splice(index:Int, count:Int):VariableSequence<T>;
 
     /**
         Inserts a given sequence.

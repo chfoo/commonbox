@@ -31,41 +31,41 @@ import commonbox.ds.std.ObjectMap as WrappedObjectMap;
 @:forward
 @:forwardStatics
 @:multiType(@:followWithAbstracts K)
-abstract AutoMap<K,V>(MutableMapping<K,V>) {
+abstract AutoMap<K,V>(Mapping<K,V>) {
     public function new();
 
     @:to
-    static inline function toHashMap<K:Equatable,V>(map:MutableMapping<K,V>)
+    static inline function toHashMap<K:Equatable,V>(map:Mapping<K,V>)
             :HashMap<K,V> {
         return new HashMap<K,V>();
     }
 
     @:to
-    static inline function toStringMap<K:String,V>(map:MutableMapping<K,V>)
+    static inline function toStringMap<K:String,V>(map:Mapping<K,V>)
             :WrappedStringMap<V> {
         return new WrappedStringMap<V>();
     }
 
     @:to
-    static inline function toIntMap<K:Int,V>(map:MutableMapping<K,V>)
+    static inline function toIntMap<K:Int,V>(map:Mapping<K,V>)
             :WrappedIntMap<V> {
         return new WrappedIntMap<V>();
     }
 
     @:to
     static inline function toEnumValueMap<K:EnumValue,V>(
-            map:MutableMapping<K,V>):WrappedEnumValueMap<K,V> {
+            map:Mapping<K,V>):WrappedEnumValueMap<K,V> {
         return new WrappedEnumValueMap<K,V>();
     }
 
     @:to
-    static inline function toObjectMap<K:{},V>(map:MutableMapping<K,V>)
+    static inline function toObjectMap<K:{},V>(map:Mapping<K,V>)
             :WrappedObjectMap<K,V> {
         return new WrappedObjectMap();
     }
 
     @:to
-    static inline function toAnyMap<K,V>(map:MutableMapping<K,V>)
+    static inline function toAnyMap<K,V>(map:Mapping<K,V>)
             :AnyMap<K,V> {
         return new AnyMap();
     }

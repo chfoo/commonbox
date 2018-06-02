@@ -21,7 +21,7 @@ private typedef BucketArray<K:Equatable,V> = Array<BucketItem<K,V>>;
 /**
     Hash map using an IntMap to store its buckets.
 **/
-class IntBucketMap<K:Equatable,V> implements BaseMutableMapping<K,V> {
+class IntBucketMap<K:Equatable,V> implements BaseMapping<K,V> {
     public var length(get, never):Int;
 
     var _length = 0;

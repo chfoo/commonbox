@@ -5,9 +5,9 @@ import utest.Assert;
 
 
 class SetTester {
-    var setFactory:Void->MutableSet<Any>;
+    var setFactory:Void->Set<Any>;
 
-    public function new(setFactory:Void->MutableSet<Any>) {
+    public function new(setFactory:Void->Set<Any>) {
         this.setFactory = setFactory;
     }
 

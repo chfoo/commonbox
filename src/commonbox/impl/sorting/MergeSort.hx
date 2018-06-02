@@ -7,7 +7,7 @@ import commonbox.impl.LinkedList;
 
 class MergeSort {
     // https://en.wikipedia.org/wiki/Merge_sort
-    public static function sort<T>(seq:BaseMutableSequence<T>,
+    public static function sort<T>(seq:BaseSequence<T>,
             comparer:T->T->Int) {
         if (seq.length <= 1) {
             return;
@@ -43,11 +43,11 @@ class MergeSort {
     }
 
     static function bottomUpMerge<T>(
-            seq:BaseMutableSequence<T>,
+            seq:BaseSequence<T>,
             iLeft:Int,
             iRight:Int,
             iEnd:Int,
-            workArray:BaseMutableSequence<T>,
+            workArray:BaseSequence<T>,
             comparer:T->T->Int) {
         var i = iLeft;
         var j = iRight;
