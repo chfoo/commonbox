@@ -47,7 +47,7 @@ trace(vector); // [1, 2, 3, 4]
 A Haxe `Vector` isn't iterable, but a CommonBox `Vector` is! In fact, both `ArrayList` and `Vector` implement the `Sequence` abstract data type. The following example contains a function that accepts a sequence of integers adds 1 to them:
 
 ```haxe
-function addOne(sequence:MutableSequence<Int>) {
+function addOne(sequence:Sequence<Int>) {
     for (index in 0...sequence.length) {
         sequence.set(index, sequence.get(index) + 1);
     }

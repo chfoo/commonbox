@@ -4,8 +4,8 @@ haxe:
   - stable
 
 install:
-  yes | haxelib install test.hxml
-  yes | haxelib install example/example-readme.hxml
+  - yes | haxelib install test.hxml
+  - yes | haxelib install example-readme.hxml
 
 script:
   - haxe hxml/test.neko.hxml

@@ -29,7 +29,7 @@ class ExampleReadme {
         var vector = Vector.fromCollection(sequence);
         trace(vector);
 
-        function addOne(sequence:MutableSequence<Int>) {
+        function addOne(sequence:Sequence<Int>) {
             for (index in 0...sequence.length) {
                 sequence.set(index, sequence.get(index) + 1);
             }
