@@ -25,7 +25,7 @@ interface SequenceRangeCopyable<T,S:BaseSequence<T>> extends BaseSequence<T> {
     /**
         Returns a new sequence containing the given range.
 
-        Accepted index ranges are the same as in `BaseMutableVariableSequence.insert`.
+        Accepted index ranges are the same as in `BaseVariableSequence.insert`.
 
         @param index Starting range.
         @param endIndex Ending range (not inclusive).

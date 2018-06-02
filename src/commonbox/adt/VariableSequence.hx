@@ -28,7 +28,7 @@ interface BaseVariableSequence<T> extends BaseSequence<T> {
     /**
         Removes an item at the given position.
 
-        Accepted index ranges are the same as in `BaseMutableVariableSequence.insert`.
+        Accepted index ranges are the same as in `BaseVariableSequence.insert`.
 
         @param index Position to item to be removed.
     **/
@@ -66,7 +66,7 @@ interface VariableSequence<T>
     /**
         Removes a range of items and returns it.
 
-        Accepted index ranges are the same as in `BaseMutableVariableSequence.insert`.
+        Accepted index ranges are the same as in `BaseVariableSequence.insert`.
 
         @param index Beginning of the range.
         @param count Number of items. It is clamped if it is out of range.
@@ -76,7 +76,7 @@ interface VariableSequence<T>
     /**
         Inserts a given sequence.
 
-        Accepted index ranges are the same as in `BaseMutableVariableSequence.insert`.
+        Accepted index ranges are the same as in `BaseVariableSequence.insert`.
 
         @param index Position to insert.
         @param other Items to be inserted.
