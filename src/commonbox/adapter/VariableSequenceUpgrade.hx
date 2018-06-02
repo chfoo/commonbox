@@ -124,12 +124,12 @@ class VariableSequenceUpgrade<T> implements VariableSequence<T> {
         return helper.pop();
     }
 
-    public function shift(item:T) {
-        helper.shift(item);
+    public function unshift(item:T) {
+        helper.unshift(item);
     }
 
-    public function unshift():Option<T> {
-        return helper.unshift();
+    public function shift():Option<T> {
+        return helper.shift();
     }
 
     public function splice(index:Int, count:Int):VariableSequence<T> {

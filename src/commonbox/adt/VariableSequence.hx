@@ -56,12 +56,12 @@ interface VariableSequence<T>
     /**
         Adds the given item to the beginning of the sequence.
     **/
-    function shift(item:T):Void;
+    function unshift(item:T):Void;
 
     /**
         Removes the first item in the sequence and returns it.
     **/
-    function unshift():Option<T>;
+    function shift():Option<T>;
 
     /**
         Removes a range of items and returns it.

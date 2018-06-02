@@ -34,11 +34,11 @@ class VariableSequenceHelper<T,S:BaseVariableSequence<T>>
         }
     }
 
-    public function shift(item:T) {
+    public function unshift(item:T) {
         sequence.insert(0, item);
     }
 
-    public function unshift():Option<T> {
+    public function shift():Option<T> {
         if (sequence.length > 0) {
             var item = sequence.get(0);
             sequence.removeAt(0);

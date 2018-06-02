@@ -77,17 +77,17 @@ class VariableSequenceTester {
     function testShiftUnshift() {
         var sequence = sequenceFactory();
 
-        sequence.shift("a");
+        sequence.unshift("a");
 
         Assert.equals(1, sequence.length);
         Assert.equals("a", sequence.get(0));
 
-        sequence.shift("b");
+        sequence.unshift("b");
         Assert.equals(2, sequence.length);
         Assert.equals("b", sequence.get(0));
         Assert.equals("a", sequence.get(1));
 
-        switch (sequence.unshift()) {
+        switch (sequence.shift()) {
             case Some(item):
                 Assert.equals("b", item);
             case None:
@@ -97,7 +97,7 @@ class VariableSequenceTester {
         Assert.equals(1, sequence.length);
         Assert.equals("a", sequence.get(0));
 
-        switch (sequence.unshift()) {
+        switch (sequence.shift()) {
             case Some(item):
                 Assert.equals("a", item);
             case None:
@@ -106,7 +106,7 @@ class VariableSequenceTester {
 
         Assert.equals(0, sequence.length);
 
-        switch (sequence.unshift()) {
+        switch (sequence.shift()) {
             case Some(item):
                 Assert.fail();
             case None:
