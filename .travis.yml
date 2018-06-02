@@ -10,4 +10,4 @@ install:
 script:
   - haxe hxml/test.neko.hxml
   - neko out/neko/test.n
-  - haxe example/example-readme.hxml
+  - haxe example-readme.hxml
