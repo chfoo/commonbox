@@ -1,14 +1,17 @@
 package commonbox.impl.sorting;
 
 import commonbox.adt.Sequence;
+import commonbox.adt.NodeSequence;
+import commonbox.adt.VariableSequence;
+import commonbox.ds.List;
 import commonbox.ds.Vector;
-import commonbox.impl.LinkedList;
+
+using commonbox.utils.OptionTools;
 
 
 class MergeSort {
     // https://en.wikipedia.org/wiki/Merge_sort
-    public static function sort<T>(seq:BaseSequence<T>,
-            comparer:T->T->Int) {
+    public static function sort<T>(seq:BaseSequence<T>, comparer:T->T->Int) {
         if (seq.length <= 1) {
             return;
         }
@@ -65,5 +68,86 @@ class MergeSort {
 
             k += 1;
         }
+    }
+
+    public static function listSort<T>(seq:NodeSequence<T>, comparer:T->T->Int) {
+        if (seq.length <= 1) {
+            return;
+        }
+
+        var newList = _listSort(seq, comparer);
+        Debug.assert(seq.length == newList.length);
+
+        var node = newList.getNodeAt(0);
+        var newNode = newList.getNodeAt(0);
+
+        while (true) {
+            node.replaceItem(newNode.item);
+
+            switch (node.next) {
+                case Some(nextNode):
+                    node = nextNode;
+                case None:
+                    break;
+            }
+
+            switch (newNode.next) {
+                case Some(nextNode):
+                    newNode = nextNode;
+                case None:
+                    break;
+            }
+        }
+    }
+
+    static function _listSort<T>(seq:NodeSequence<T>, comparer:T->T->Int)
+            :NodeSequence<T> {
+        if (seq.length <= 1) {
+            return seq;
+        }
+
+        var left:NodeSequence<T> = new List<T>();
+        var right:NodeSequence<T> = new List<T>();
+
+        var i = 0;
+        for (item in seq) {
+            if (i < seq.length / 2) {
+                left.push(item);
+            } else {
+                right.push(item);
+            }
+
+            i += 1;
+        }
+
+        left = _listSort(left, comparer);
+        right = _listSort(right, comparer);
+
+        return listMerge(left, right, comparer);
+    }
+
+    static function listMerge<T>(
+            left:NodeSequence<T>,
+            right:NodeSequence<T>,
+            comparer:T->T->Int):List<T> {
+        var result = new List<T>();
+
+        while (!left.isEmpty() && !right.isEmpty()) {
+            if (comparer(left.first(), right.first()) <= 0) {
+                result.push(left.shift().getSome());
+            } else {
+                result.push(right.shift().getSome());
+            }
+        }
+
+        while (!left.isEmpty()) {
+            result.push(left.shift().getSome());
+        }
+
+        while (!right.isEmpty()) {
+            result.push(right.shift().getSome());
+        }
+
+        return result;
     }
 }

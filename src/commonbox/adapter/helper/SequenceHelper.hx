@@ -2,7 +2,7 @@ package commonbox.adapter.helper;
 
 import commonbox.adapter.helper.immutable.SequenceHelper as ImmutableSequenceHelper;
 import commonbox.adt.Sequence;
-import commonbox.impl.LinkedList;
+import commonbox.adt.NodeSequence;
 import commonbox.impl.sorting.MergeSort;
 import commonbox.impl.sorting.SelectionSort;
 import commonbox.utils.Comparer;
@@ -28,14 +28,17 @@ class SequenceHelper<T,S:BaseSequence<T>>
         }
 
         if (sequence.length <= 32) {
-            if (Std.is(sequence, LinkedList)) {
+            if (Std.is(sequence, NodeSequence)) {
                 SelectionSort.listInsertSort(cast sequence, comparer);
             } else {
                 SelectionSort.swapSort(sequence, comparer);
             }
         } else {
-            // TODO: linked list version
-            MergeSort.sort(sequence, comparer);
+            if (Std.is(sequence, NodeSequence)) {
+                MergeSort.listSort(cast sequence, comparer);
+            } else {
+                MergeSort.sort(sequence, comparer);
+            }
         }
     }
 }
