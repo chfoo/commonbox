@@ -17,7 +17,7 @@ Compatible with Haxe 3.
 
 Install using haxelib:
 
-TODO: show how to install once published
+        haxelib install commonbox
 
 
 ### Replacing standard Haxe data structures
@@ -172,7 +172,7 @@ trace(label); // "point 1"
 Data structure summary
 ----------------------
 
-The following table describes appropriate uses for common data structures. For details on complexity, see the API documentation.
+The following table describes appropriate uses for common data structures. For details on complexity, see the [API documentation](https://chfoo.github.io/commonbox/api/).
 
 | ADT | Use case |
 |-----|----------|
@@ -186,7 +186,7 @@ The following table describes appropriate uses for common data structures. For d
 | ArrayList | Random access | Slow inserts |
 | Vector | Fast random access | Fixed size |
 | List | Fast add/insert/remove | Slow random access |
-| Dequeue | Fast add/remove on first and last position | Slow random access and inserts |
+| Deque | Fast add/remove on first and last position | Slow random access and inserts |
 
 
 | Mapping type | Summary |
