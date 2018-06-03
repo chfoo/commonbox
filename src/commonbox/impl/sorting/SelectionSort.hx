@@ -1,7 +1,7 @@
 package commonbox.impl.sorting;
 
 import commonbox.adt.Sequence;
-import commonbox.ds.List;
+import commonbox.adt.NodeSequence;
 
 
 class SelectionSort {
@@ -37,7 +37,7 @@ class SelectionSort {
         }
     }
 
-    public static function listInsertSort<T,N>(seq:List<T>,
+    public static function listInsertSort<T,N>(seq:NodeSequence<T>,
             comparer:T->T->Int) {
         if (seq.length <= 1) {
             return;
