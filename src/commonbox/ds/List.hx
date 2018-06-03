@@ -19,7 +19,7 @@ import commonbox.impl.LinkedList;
 **/
 class List<T>
         implements VariableSequence<T>
-        implements NodeSequence<T,LinkedListNode<T>>
+        implements NodeSequence<T>
         extends VariableSequenceUpgrade<T> {
     var innerSequence:LinkedList<T>;
 
@@ -41,7 +41,7 @@ class List<T>
         return array;
     }
 
-    public function getNodeAt(index:Int) {
+    public function getNodeAt(index:Int):NodeSequenceRef<T> {
         return innerSequence.getNodeAt(index);
     }
 }

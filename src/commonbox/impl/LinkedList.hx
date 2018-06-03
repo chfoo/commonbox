@@ -15,7 +15,7 @@ using commonbox.utils.OptionTools;
 **/
 class LinkedList<T>
         implements BaseVariableSequence<T>
-        implements NodeSequence<T,LinkedListNode<T>> {
+        implements BaseNodeSequence<T> {
     public var length(get, never):Int;
     var _length = 0;
 
@@ -253,7 +253,7 @@ private class Node<T> {
 }
 
 
-class LinkedListNode<T> implements NodeSequenceRef<T,LinkedListNode<T>> {
+class LinkedListNode<T> implements NodeSequenceRef<T> {
     @:allow(commonbox.impl.LinkedList)
     var node(default, null):Node<T>;
 
@@ -261,8 +261,8 @@ class LinkedListNode<T> implements NodeSequenceRef<T,LinkedListNode<T>> {
     var owner:Option<LinkedList<T>>;
 
     public var item(get, never):T;
-    public var previous(get, never):Option<LinkedListNode<T>>;
-    public var next(get, never):Option<LinkedListNode<T>>;
+    public var previous(get, never):Option<NodeSequenceRef<T>>;
+    public var next(get, never):Option<NodeSequenceRef<T>>;
 
     public function new(node:Node<T>, owner:LinkedList<T>) {
         this.node = node;
@@ -273,19 +273,21 @@ class LinkedListNode<T> implements NodeSequenceRef<T,LinkedListNode<T>> {
         return node.item;
     }
 
-    function get_previous() {
+    function get_previous():Option<NodeSequenceRef<T>> {
         switch (node.previous) {
             case Some(previousNode):
-                return Some(new LinkedListNode(previousNode, owner.getSome()));
+                var node_ = new LinkedListNode(previousNode, owner.getSome());
+                return Some((node_:NodeSequenceRef<T>));
             case None:
                 return None;
         }
     }
 
-    function get_next() {
+    function get_next():Option<NodeSequenceRef<T>> {
         switch (node.next) {
             case Some(nextNode):
-                return Some(new LinkedListNode(nextNode, owner.getSome()));
+                var node_= new LinkedListNode(nextNode, owner.getSome());
+                return Some((node_:NodeSequenceRef<T>));
             case None:
                 return None;
         }
@@ -297,6 +299,10 @@ class LinkedListNode<T> implements NodeSequenceRef<T,LinkedListNode<T>> {
 
     public function insertBefore(item:T) {
         owner.getSome().insertBefore(item, this);
+    }
+
+    public function replaceItem(item:T) {
+        node.item = item;
     }
 }
 

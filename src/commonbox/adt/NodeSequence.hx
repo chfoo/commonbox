@@ -1,29 +1,34 @@
 package commonbox.adt;
 
+import commonbox.adt.VariableSequence;
 import haxe.ds.Option;
 
 
 /**
     Sequence that can be have references to its items (nodes).
 **/
-interface NodeSequence<T,N:NodeSequenceRef<T,N>> {
+interface BaseNodeSequence<T> extends BaseVariableSequence<T> {
     /**
         Returns the node at given position.
     **/
-    function getNodeAt(index:Int):NodeSequenceRef<T,N>;
+    function getNodeAt(index:Int):NodeSequenceRef<T>;
 }
 
 
-interface NodeSequenceRef<T,N:NodeSequenceRef<T,N>> extends ElementRef<T> {
+interface NodeSequence<T> extends BaseNodeSequence<T> extends VariableSequence<T> {
+}
+
+
+interface NodeSequenceRef<T> extends ElementRef<T> {
     /**
         Next node in the sequence.
     **/
-    var next(get, never):Option<N>;
+    var next(get, never):Option<NodeSequenceRef<T>>;
 
     /**
         Previous node in the sequence.
     **/
-    var previous(get, never):Option<N>;
+    var previous(get, never):Option<NodeSequenceRef<T>>;
 
     /**
         Removes the node from the sequence.
@@ -36,4 +41,9 @@ interface NodeSequenceRef<T,N:NodeSequenceRef<T,N>> extends ElementRef<T> {
         Inserts the given item before this node.
     **/
     function insertBefore(item:T):Void;
+
+    /**
+        Replaces the current item with the given item.
+    **/
+    function replaceItem(item:T):Void;
 }
