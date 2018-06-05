@@ -1,2 +1,5 @@
-out/
+# mcover coverage
+.temp/
 
+# Our output
+out/

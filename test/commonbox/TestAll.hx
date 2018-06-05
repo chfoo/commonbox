@@ -8,7 +8,20 @@ class TestAll {
     public static function main() {
         var runner = new Runner();
         runner.addCases(commonbox.tests);
-        Report.create(runner);
+        var report = Report.create(runner);
+
+        #if coverage
+        report.setHandler(coverageHandler);
+        #end
+
         runner.run();
+    }
+
+    static function coverageHandler(handler) {
+        #if coverage
+        trace("Running coverage report");
+        var logger = mcover.coverage.MCoverage.getLogger();
+        logger.report();
+        #end
     }
 }

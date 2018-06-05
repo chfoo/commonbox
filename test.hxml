@@ -2,4 +2,9 @@
 -cp test/
 -lib utest
 -debug
+
+# -lib mcover
+# --macro mcover.MCover.coverage(['commonbox'], ['src'], null)
+# -D coverage
+
 -main commonbox.TestAll

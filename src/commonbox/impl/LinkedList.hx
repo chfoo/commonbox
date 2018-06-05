@@ -222,6 +222,8 @@ class LinkedList<T>
                     throw new Exception.OutOfBoundsException();
             }
         }
+
+        throw "Shouldn't reach here";
     }
 
     function nodeAtBackward(index:Int):Node<T> {
@@ -241,6 +243,8 @@ class LinkedList<T>
                     throw new Exception.OutOfBoundsException();
             }
         }
+
+        throw "Shouldn't reach here";
     }
 }
 

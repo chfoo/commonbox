@@ -91,5 +91,7 @@ class IteratorTools<T> {
                 return false;
             }
         }
+
+        throw "Shouldn't reach here";
     }
 }

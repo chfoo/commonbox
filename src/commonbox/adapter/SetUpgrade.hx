@@ -87,7 +87,7 @@ class SetUpgrade<T> implements Set<T> {
     }
 
     public function clear() {
-        return helper.clear();
+        helper.clear();
     }
 
     public function contentEquals(other:ImmutableBaseSet<T>):Bool {
