@@ -12,15 +12,6 @@ class MappingHelper<K,V> {
         this.mapping = mapping;
     }
 
-    public function containsKey(key:K):Bool {
-        switch (mapping.get(key)) {
-            case None:
-                return false;
-            case Some(item):
-                return true;
-        }
-    }
-
     public function getOrElse(key:K, ?defaultItem:V):V {
         switch (mapping.get(key)) {
             case None:

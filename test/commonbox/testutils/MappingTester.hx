@@ -63,6 +63,7 @@ class MappingTester<K> {
 
         Assert.equals("a", mapping.getOnly(key1));
         Assert.raises(mapping.getOnly.bind(key999), Exception.NotFoundException);
+        Assert.equals("a", mapping.getOrElse(key1, "zzz"));
         Assert.equals("zzz", mapping.getOrElse(key999, "zzz"));
     }
 

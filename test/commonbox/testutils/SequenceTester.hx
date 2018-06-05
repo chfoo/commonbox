@@ -64,6 +64,12 @@ class SequenceTester {
 
         Assert.equals(itemC, sequence.last());
         Assert.equals(itemC, sequence.lastOption().getParameters()[0]);
+
+        var emptySequence = sequenceFactory(0);
+        Assert.raises(emptySequence.first, Exception.OutOfBoundsException);
+        Assert.raises(emptySequence.last, Exception.OutOfBoundsException);
+        Assert.equals(emptySequence.firstOption(), Option.None);
+        Assert.equals(emptySequence.lastOption(), Option.None);
     }
 
     function testContainer() {
@@ -107,6 +113,11 @@ class SequenceTester {
 
         Assert.equals(1, newSequence.length);
         Assert.equals(itemB, newSequence.get(0));
+
+        newSequence = sequence.slice(1);
+        Assert.equals(2, newSequence.length);
+        Assert.equals(itemB, newSequence.get(0));
+        Assert.equals(itemC, newSequence.get(1));
     }
 
     function testEqualsCopy() {
