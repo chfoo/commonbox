@@ -57,8 +57,8 @@ class SetHelper<T> {
     public function difference(other:BaseSet<T>):MutableBaseSet<T> {
         var newSet = setFactory();
 
-        for (item in set) {
-            if (!other.contains(item)) {
+        for (item in other) {
+            if (!set.contains(item)) {
                 newSet.add(item);
             }
         }

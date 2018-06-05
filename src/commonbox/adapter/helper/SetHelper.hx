@@ -12,7 +12,7 @@ class SetHelper<T> extends ImmutableSetHelper<T> {
     public function new(
             set:BaseSet<T>, setFactory:Void->BaseSet<T>) {
         super(set, setFactory);
-        this.set = set;
+        this.set = mutableSet = set;
     }
 
     public function clear() {

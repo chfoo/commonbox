@@ -25,7 +25,7 @@ interface Set<T,S:BaseSet<T>> extends BaseSet<T> extends Copyable<Set<T,S>> {
     function difference(other:BaseSet<T>):S;
 
     /**
-        Returns a set containing items in This" and Other, but not both.
+        Returns a set containing items in This and Other, but not both.
     **/
     function symmetricDifference(other:BaseSet<T>):S;
 
