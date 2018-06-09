@@ -27,8 +27,8 @@ interface BaseMapping<K,V> extends Collection<V> {
 
 
 interface Mapping<K,V>
-        extends BaseMapping<K,V> extends
-        Copyable<Mapping<K,V>> {
+        extends BaseMapping<K,V>
+        extends Copyable<Mapping<K,V>> {
     /**
         Returns the value if the key exists, otherwise the given default.
     **/

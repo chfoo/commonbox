@@ -9,17 +9,20 @@ using commonbox.utils.IteratorTools;
 class MappingTester<K> {
     var mapping:Mapping<K,Any>;
     var keyGenerator:Int->K;
+    var mappingFactory:Void->Mapping<K,Any>;
 
     public function new(mappingFactory:Void->Mapping<K,Any>, keyGenerator:Int->K) {
+        this.mappingFactory = mappingFactory;
         this.mapping = mappingFactory();
         this.keyGenerator = keyGenerator;
     }
 
     public function test() {
         testContainer();
-        testEqualsCopy();
+        testCopy();
         testGetters();
         testRemoveClear();
+        testEquals();
     }
 
     function testContainer() {
@@ -48,13 +51,9 @@ class MappingTester<K> {
         Assert.isTrue(mapping.keys().contains(key3));
     }
 
-    function testEqualsCopy() {
+    function testCopy() {
         var mappingCopy = mapping.copy();
         Assert.isTrue(mapping.contentEquals(mappingCopy));
-
-        mappingCopy.remove(keyGenerator(1));
-
-        Assert.isFalse(mapping.contentEquals(mappingCopy));
     }
 
     function testGetters() {
@@ -79,5 +78,34 @@ class MappingTester<K> {
         Assert.equals(0, mapping.length);
         Assert.isTrue(mapping.isEmpty());
         Assert.isTrue(!mapping.containsKey(key1));
+    }
+
+    function testEquals() {
+        var mappingA = mappingFactory();
+        var mappingB = mappingFactory();
+
+        Assert.isTrue(mappingA.contentEquals(mappingB));
+
+        mappingA.set(keyGenerator(1), "a");
+        mappingB.set(keyGenerator(1), "a");
+        Assert.isTrue(mappingA.contentEquals(mappingB));
+
+        mappingA.set(keyGenerator(1), "a");
+        mappingB.set(keyGenerator(1), "b");
+        Assert.isFalse(mappingA.contentEquals(mappingB));
+
+        mappingA = mappingFactory();
+        mappingB = mappingFactory();
+        mappingA.set(keyGenerator(1), "a");
+        mappingB.set(keyGenerator(1), "a");
+        mappingB.set(keyGenerator(2), "b");
+        Assert.isFalse(mappingA.contentEquals(mappingB));
+
+        mappingA = mappingFactory();
+        mappingB = mappingFactory();
+        mappingA.set(keyGenerator(1), "a");
+        mappingA.set(keyGenerator(2), "b");
+        mappingB.set(keyGenerator(1), "a");
+        Assert.isFalse(mappingA.contentEquals(mappingB));
     }
 }

@@ -118,6 +118,9 @@ class SequenceTester {
         Assert.equals(2, newSequence.length);
         Assert.equals(itemB, newSequence.get(0));
         Assert.equals(itemC, newSequence.get(1));
+
+        newSequence = sequence.slice(1, 0);
+        Assert.equals(0, newSequence.length);
     }
 
     function testEqualsCopy() {

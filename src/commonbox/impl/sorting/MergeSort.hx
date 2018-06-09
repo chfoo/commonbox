@@ -2,7 +2,6 @@ package commonbox.impl.sorting;
 
 import commonbox.adt.Sequence;
 import commonbox.adt.NodeSequence;
-import commonbox.adt.VariableSequence;
 import commonbox.ds.List;
 import commonbox.ds.Vector;
 

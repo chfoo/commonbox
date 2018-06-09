@@ -27,7 +27,7 @@ class VariableSequenceTester {
 
         testEqualsCopy();
         testClear();
-        testInsert();
+        testInsertRemove();
         testShiftUnshift();
         testPushPop();
         testExtend();
@@ -60,7 +60,7 @@ class VariableSequenceTester {
         Assert.raises(sequence.last, Exception.OutOfBoundsException);
     }
 
-    function testInsert() {
+    function testInsertRemove() {
         var sequence = sequenceFactory();
 
         sequence.insert(-100, "c");
@@ -72,6 +72,15 @@ class VariableSequenceTester {
         Assert.equals("b", sequence.get(1));
         Assert.equals("c", sequence.get(2));
         Assert.equals("d", sequence.get(3));
+
+        var result = sequence.remove("c");
+        Assert.isTrue(result);
+        Assert.equals("a", sequence.get(0));
+        Assert.equals("b", sequence.get(1));
+        Assert.equals("d", sequence.get(2));
+
+        result = sequence.remove("c");
+        Assert.isFalse(result);
     }
 
     function testShiftUnshift() {
