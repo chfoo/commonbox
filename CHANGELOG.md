@@ -2,7 +2,7 @@ Change Log
 ==========
 
 
-0.2.0 (Unreleased)
+0.1.1 (2018-06-11)
 ------------------
 
 * Fixed `Set.clear()`.

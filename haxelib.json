@@ -4,9 +4,9 @@
     "license": "MIT",
     "tags": ["cross"],
     "description": "Unified collections interface to abstract data types and data structures.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "classPath": "src/",
-    "releasenote": "Initial release",
+    "releasenote": "Bug fixes (see changelog)",
     "contributors": ["chfoo"],
     "dependencies": {
     }
