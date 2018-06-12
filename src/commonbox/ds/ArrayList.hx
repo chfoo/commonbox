@@ -14,7 +14,7 @@ import commonbox.adt.Collection;
     | --------- | ------------------------ |
     | length | O(1) |
     | get/set | O(1) |
-    | append/prepend | O(1) or O(n) depending on the implementation |
+    | append/prepend | O(n) but usually amortized to O(1) |
     | insert/remove | O(n) |
 **/
 @:forward
