@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Unreleased
+----------
+
+* Fixed Deque/CircularBuffer modulus/division by zero on PHP
+
 
 0.1.1 (2018-06-11)
 ------------------

@@ -22,7 +22,9 @@ class CircularBuffer<T> implements BaseVariableSequence<T> {
     var logicalLength:Int = 0;
 
     public function new(?maxSize:Int) {
-        this.maxSize = maxSize != null ? maxSize : -1;
+        this.maxSize = maxSize = maxSize != null ? maxSize : -1;
+
+        Debug.assert(maxSize != null);
 
         if (maxSize >= 0) {
             buffer = new Vector(maxSize);
