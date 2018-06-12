@@ -76,4 +76,10 @@ class ArrayImpl<T> extends VariableSequenceUpgrade<T>
             sequenceFactory
         );
     }
+
+    #if (haxe_ver >= "4.0")
+    override public function clear() {
+        _stdDS.resize(0);
+    }
+    #end
 }
