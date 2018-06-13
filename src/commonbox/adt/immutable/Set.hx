@@ -8,26 +8,26 @@ interface BaseSet<T> extends Collection<T> {
 }
 
 
-interface Set<T,S:BaseSet<T>> extends BaseSet<T> extends Copyable<Set<T,S>> {
+interface Set<T> extends BaseSet<T> {
     /**
         Returns a set containing items in This, Other, or both.
     **/
-    function union(other:BaseSet<T>):S;
+    function union(other:BaseSet<T>):Set<T>;
 
     /**
         Returns a set containing items in only both.
     **/
-    function intersection(other:BaseSet<T>):S;
+    function intersection(other:BaseSet<T>):Set<T>;
 
     /**
         Returns a set containing items in only Other.
     **/
-    function difference(other:BaseSet<T>):S;
+    function difference(other:BaseSet<T>):Set<T>;
 
     /**
         Returns a set containing items in This and Other, but not both.
     **/
-    function symmetricDifference(other:BaseSet<T>):S;
+    function symmetricDifference(other:BaseSet<T>):Set<T>;
 
     /**
         Returns whether the set is empty.
@@ -65,4 +65,9 @@ interface Set<T,S:BaseSet<T>> extends BaseSet<T> extends Copyable<Set<T,S>> {
         Returns whether the set contains the same items in the given set.
     **/
     function contentEquals(other:BaseSet<T>):Bool;
+
+    /**
+        Returns a shallow clone.
+    **/
+    function copy():Set<T>;
 }

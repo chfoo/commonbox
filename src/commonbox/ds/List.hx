@@ -18,7 +18,6 @@ import commonbox.impl.LinkedList;
     | insertNode/removeNode | O(1) |
 **/
 class List<T>
-        implements VariableSequence<T>
         implements NodeSequence<T>
         extends VariableSequenceUpgrade<T> {
     var innerSequence:LinkedList<T>;

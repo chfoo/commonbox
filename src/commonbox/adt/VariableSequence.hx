@@ -1,6 +1,5 @@
 package commonbox.adt;
 
-import commonbox.adt.immutable.Sequence as ImmutableSequence;
 import commonbox.adt.immutable.Sequence.SequenceRangeCopyable;
 import commonbox.adt.Sequence;
 import haxe.ds.Option;
@@ -37,12 +36,15 @@ interface BaseVariableSequence<T> extends BaseSequence<T> {
 
 
 interface VariableSequence<T>
-        extends ImmutableSequence<T>
         extends Sequence<T>
         extends BaseVariableSequence<T>
-        extends Copyable<VariableSequence<T>>
-        extends SequenceRangeCopyable<T,VariableSequence<T>>
         {
+
+    // Contravariant return type methods:
+    function copy():VariableSequence<T>;
+    function slice(index:Int, ?endIndex:Int):VariableSequence<T>;
+    function concat(other:Collection<T>):VariableSequence<T>;
+
     /**
         Adds the given item to the end of the sequence.
     **/

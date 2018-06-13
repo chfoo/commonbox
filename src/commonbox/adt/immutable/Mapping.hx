@@ -28,7 +28,7 @@ interface BaseMapping<K,V> extends Collection<V> {
 
 interface Mapping<K,V>
         extends BaseMapping<K,V>
-        extends Copyable<Mapping<K,V>> {
+        {
     /**
         Returns the value if the key exists, otherwise the given default.
     **/
@@ -48,4 +48,9 @@ interface Mapping<K,V>
         Returns whether this collection has the same items in the given collection.
     **/
     function contentEquals(other:BaseMapping<K,V>):Bool;
+
+    /**
+        Returns a shallow clone.
+    **/
+    function copy():Mapping<K,V>;
 }

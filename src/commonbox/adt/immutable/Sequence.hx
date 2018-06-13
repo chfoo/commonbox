@@ -21,31 +21,8 @@ interface BaseSequence<T> extends Collection<T> {
 }
 
 
-interface SequenceRangeCopyable<T,S:BaseSequence<T>> extends BaseSequence<T> {
-    /**
-        Returns a new sequence containing the given range.
-
-        Accepted index ranges are the same as in `BaseVariableSequence.insert`.
-
-        @param index Starting range.
-        @param endIndex Ending range (not inclusive).
-    **/
-    function slice(index:Int, ?endIndex:Int):S;
-
-    /**
-        Returns a new sequence containing the sequence's items and
-        the given collection's items.
-
-        @param other Items to be placed after this sequence's items.
-    **/
-    function concat(other:Collection<T>):S;
-}
-
-
 interface Sequence<T>
         extends BaseSequence<T>
-        extends Copyable<Sequence<T>>
-        extends SequenceRangeCopyable<T,Sequence<T>>
         {
     /**
         Returns the first item in the sequence.
@@ -95,4 +72,27 @@ interface Sequence<T>
         @param other Another ordered sequence.
     **/
     function contentEquals(other:BaseSequence<T>):Bool;
+
+    /**
+        Returns a new sequence containing the given range.
+
+        Accepted index ranges are the same as in `BaseVariableSequence.insert`.
+
+        @param index Starting range.
+        @param endIndex Ending range (not inclusive).
+    **/
+    function slice(index:Int, ?endIndex:Int):Sequence<T>;
+
+    /**
+        Returns a new sequence containing the sequence's items and
+        the given collection's items.
+
+        @param other Items to be placed after this sequence's items.
+    **/
+    function concat(other:Collection<T>):Sequence<T>;
+
+    /**
+        Returns a shallow clone.
+    **/
+    function copy():Sequence<T>;
 }

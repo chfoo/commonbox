@@ -22,8 +22,10 @@ interface BaseMapping<K,V> extends BaseImmutableMapping<K,V> {
 interface Mapping<K,V>
         extends ImmutableMapping<K,V>
         extends BaseMapping<K,V>
-        extends Copyable<Mapping<K,V>>
         {
+    // Contravariant return type methods:
+    function copy():Mapping<K,V>;
+
     /**
         Remove all associations.
     **/

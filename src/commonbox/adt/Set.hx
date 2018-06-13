@@ -22,11 +22,19 @@ interface BaseSet<T> extends ImmutableBaseSet<T> {
 
 
 interface Set<T>
-        extends ImmutableSet<T, Set<T>>
+        extends ImmutableSet<T>
         extends BaseSet<T>
-        extends Copyable<Set<T>> {
+        {
+    // Contravariant return type methods:
+    function copy():Set<T>;
+    function union(other:ImmutableBaseSet<T>):Set<T>;
+    function intersection(other:ImmutableBaseSet<T>):Set<T>;
+    function difference(other:ImmutableBaseSet<T>):Set<T>;
+    function symmetricDifference(other:ImmutableBaseSet<T>):Set<T>;
+
     /**
         Removes all items from the set.
     **/
     function clear():Void;
+
 }
