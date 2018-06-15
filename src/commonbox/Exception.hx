@@ -3,17 +3,12 @@ package commonbox;
 /**
     Base class for exceptions thrown by this library.
 **/
-class Exception {
-    /**
-        Reason for the exception.
-    **/
-    public var message(default, null):String;
-
-    public function new(message:String = "") {
-        this.message = message;
+class Exception extends haxe.Exception {
+    public function new(message:String = "", ?previous:Exception) {
+        super(message, previous);
     }
 
-    public function toString():String {
+    override public function toString():String {
         var name = Type.getClassName(Type.getClass(this));
         return '[$name: $message]';
     }

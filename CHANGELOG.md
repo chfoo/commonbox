@@ -7,6 +7,7 @@ Unreleased
 * Fixed Deque/CircularBuffer modulus/division by zero on PHP target.
 * Fixed compatibility with Java and C# target.
 * Changed ADT interfaces to use explicit covariant return types instead of relying on interface inheritance with variant generic parameters.
+* Changed `Exception` to inherit `haxe.Exception` from the "exception" package.
 * Removed `Copyable` interface.
 
 
