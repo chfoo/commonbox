@@ -1,8 +1,8 @@
 Change Log
 ==========
 
-Unreleased
-----------
+0.2.0 (2018-06-19)
+------------------
 
 * Fixed Deque/CircularBuffer modulus/division by zero on PHP target.
 * Fixed compatibility with Java and C# target.
