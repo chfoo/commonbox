@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Unreleased
+----------
+
+* Added `shrinkable` parameter to `CircularBuffer`.
+
+
 0.2.0 (2018-06-19)
 ------------------
 

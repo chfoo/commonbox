@@ -18,19 +18,17 @@ class CircularBuffer<T> implements BaseVariableSequence<T> {
     var buffer:Vector<T>;
     var maxSize:Int;
     var minSize:Int = 16;
+    var shrinkable:Bool;
     var bufferIndex:Int = 0;
     var logicalLength:Int = 0;
 
-    public function new(?maxSize:Int) {
+    public function new(?maxSize:Int, shrinkable:Bool = true) {
         this.maxSize = maxSize = maxSize != null ? maxSize : -1;
+        this.shrinkable = shrinkable;
 
         Debug.assert(maxSize != null);
 
-        if (maxSize >= 0) {
-            buffer = new Vector(maxSize);
-        } else {
-            buffer = new Vector(minSize);
-        }
+        buffer = new Vector(minSize);
     }
 
     function get_length():Int {
@@ -144,7 +142,7 @@ class CircularBuffer<T> implements BaseVariableSequence<T> {
     }
 
     function checkIncreaseResize() {
-        if (logicalLength == buffer.length && maxSize >= 0) {
+        if (maxSize >= 0 && logicalLength == maxSize) {
             throw new Exception.FullException();
         }
 
@@ -154,7 +152,7 @@ class CircularBuffer<T> implements BaseVariableSequence<T> {
     }
 
     function checkDecreaseResize() {
-        if (maxSize >= 0 && buffer.length > minSize
+        if (shrinkable && buffer.length > minSize
                 && logicalLength < Std.int(buffer.length / 4)) {
             resize(Std.int(Math.max(minSize, buffer.length / 2)));
         }
