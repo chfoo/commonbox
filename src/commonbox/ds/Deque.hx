@@ -13,7 +13,7 @@ import commonbox.impl.CircularBuffer;
     | --------- | ------------------------ |
     | length | O(1) |
     | get/set | O(1) |
-    | push/pop, unshift/shift | O(1) (amortized if `maxSize` is not provided)
+    | push/pop, unshift/shift | O(1) (amortized, due to dynamic sizing) |
     | insert/remove | O(n) |
 
     @param maxSize Optional maximum size of the collection. By default, the

@@ -5,6 +5,7 @@ Unreleased
 ----------
 
 * Added `shrinkable` parameter to `CircularBuffer`.
+* Changed `Deque` specified behavior to always dynamically resize.
 
 
 0.2.0 (2018-06-19)
