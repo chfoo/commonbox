@@ -67,6 +67,32 @@ class SequenceHelper<T,S:BaseSequence<T>> {
         return sequence.iterator().indexOf(item, fromIndex);
     }
 
+    public function lastIndexOf(item:T, ?fromIndex:Int):Option<Int> {
+        // We don't know if get() is O(1), so we just scan the entire list
+        // instead searching by get()
+
+        if (fromIndex == null) {
+            fromIndex = sequence.length;
+        }
+
+        var index = 0;
+        var foundIndex = -1;
+
+        for (iterItem in sequence.iterator()) {
+            if (item.equals(iterItem) && index <= fromIndex) {
+                foundIndex = index;
+            }
+
+            index += 1;
+        }
+
+        if (foundIndex >= 0) {
+            return Some(foundIndex);
+        } else {
+            return None;
+        }
+    }
+
     public function isEmpty():Bool {
         return sequence.length == 0;
     }

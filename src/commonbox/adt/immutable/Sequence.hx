@@ -54,10 +54,21 @@ interface Sequence<T>
         This method accepts items implementing `Equatable`.
 
         @param item Item to be searched.
-        @param fromIndex If given, the search is begin at the given index.
+        @param fromIndex If given, the search begins at the given index.
             Otherwise, the search starts at index 0.
     **/
     function indexOf(item:T, ?fromIndex:Int):Option<Int>;
+
+    /**
+        Returns the position of last occurrence of the given item.
+
+        This method accepts items implementing `Equatable`.
+
+        @param item Item to be searched.
+        @param fromIndex If given, the search begins at the given index.
+            Otherwise, the search starts at index `length - 1`.
+    **/
+    function lastIndexOf(item:T, ?fromIndex:Int):Option<Int>;
 
     /**
         Returns whether the sequence is empty.

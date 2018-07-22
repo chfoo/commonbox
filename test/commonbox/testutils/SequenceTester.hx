@@ -77,6 +77,9 @@ class SequenceTester {
 
         Assert.isTrue(sequence.contains(coord));
         Assert.equals(1, sequence.indexOf(coord).getParameters()[0]);
+        Assert.equals(None, sequence.indexOf(coord, 2));
+        Assert.equals(1, sequence.lastIndexOf(coord).getParameters()[0]);
+        Assert.equals(None, sequence.lastIndexOf(coord, 0));
         Assert.isFalse(sequence.isEmpty());
 
         Assert.isFalse(sequence.contains("xyz"));

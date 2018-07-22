@@ -53,7 +53,7 @@ class IteratorTools<T> {
         var index = 0;
 
         for (candidateItem in iterator) {
-            if (item.equals(candidateItem)) {
+            if (index >= fromIndex && item.equals(candidateItem)) {
                 return Some(index);
             }
 

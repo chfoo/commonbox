@@ -71,6 +71,10 @@ class SequenceUpgrade<T> implements Sequence<T> {
         return helper.indexOf(item, fromIndex);
     }
 
+    public function lastIndexOf(item:T, ?fromIndex:Int):Option<Int> {
+        return helper.lastIndexOf(item, fromIndex);
+    }
+
     public function slice(index:Int, ?endIndex:Int):Sequence<T> {
         return new SequenceUpgrade(
             rangeCopyHelper.slice(index, endIndex), sequenceFactory);

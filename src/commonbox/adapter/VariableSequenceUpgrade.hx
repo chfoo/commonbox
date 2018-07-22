@@ -71,6 +71,9 @@ class VariableSequenceUpgrade<T> implements VariableSequence<T> {
         return helper.indexOf(item, fromIndex);
     }
 
+    public function lastIndexOf(item:T, ?fromIndex:Int):Option<Int> {
+        return helper.lastIndexOf(item, fromIndex);
+    }
 
     public function isEmpty():Bool {
         return helper.isEmpty();
