@@ -19,6 +19,9 @@ import commonbox.impl.AnyKeyArrayMap;
 **/
 class AnyMap<K,V> extends MappingUpgrade<K,V>
         implements Mapping<K,V> {
+    /**
+        Returns a new empty `AnyMap`.
+    **/
     public function new() {
         super(new AnyKeyArrayMap(), AnyKeyArrayMap.new);
     }

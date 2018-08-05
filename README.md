@@ -172,7 +172,7 @@ trace(label); // "point 1"
 Data structure summary
 ----------------------
 
-The following table describes appropriate uses for common data structures. For details on complexity, see the [API documentation](https://chfoo.github.io/commonbox/api/).
+The following table describes appropriate uses for common data structures. For details on complexity and complete features, see the [API documentation](https://chfoo.github.io/commonbox/api/).
 
 | ADT | Use case |
 |-----|----------|

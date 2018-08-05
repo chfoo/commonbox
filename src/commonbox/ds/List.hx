@@ -22,6 +22,9 @@ class List<T>
         extends VariableSequenceUpgrade<T> {
     var innerSequence:LinkedList<T>;
 
+    /**
+        Returns a new empty `List`.
+    **/
     public function new() {
         innerSequence = new LinkedList();
         super(innerSequence, LinkedList.new);

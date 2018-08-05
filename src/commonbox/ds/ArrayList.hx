@@ -21,6 +21,12 @@ import commonbox.adt.Collection;
 @:forwardStatics
 abstract ArrayList<T>(ArrayListImpl<T>) to ArrayListImpl<T>
         from ArrayListImpl<T> {
+    /**
+        Returns a new empty `ArrayList`.
+
+        @param ds Optional standard Array to wrap. See `of` for an alternative
+        method for using less keystrokes.
+    **/
     inline public function new(?ds:StdArray<T>) {
         this = new ArrayListImpl<T>(ds);
     }
@@ -40,6 +46,9 @@ abstract ArrayList<T>(ArrayListImpl<T>) to ArrayListImpl<T>
 class ArrayListImpl<T> extends commonbox.ds.std.Array.ArrayImpl<T> {
     /**
         Wraps a standard Haxe Array.
+
+        This is a convenience method as an alternative to calling
+        the constructor.
 
         The array is not copied.
     **/

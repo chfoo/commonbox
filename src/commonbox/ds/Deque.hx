@@ -9,21 +9,27 @@ import commonbox.impl.CircularBuffer;
 /**
     Sequence optimized for add/removing items at the beginning or end.
 
+    The underlying implementation dynamically resizes.
+
     | Operation | Computational complexity |
     | --------- | ------------------------ |
     | length | O(1) |
     | get/set | O(1) |
     | push/pop, unshift/shift | O(1) (amortized, due to dynamic sizing) |
     | insert/remove | O(n) |
-
-    @param maxSize Optional maximum size of the collection. By default, the
-        sequence is unbounded. If `maxSize` is given, any attempt to add
-        more items will cause the method to throw `FullException`.
 **/
 class Deque<T>
         implements VariableSequence<T>
         extends VariableSequenceUpgrade<T> {
     var innerSequence:CircularBuffer<T>;
+
+    /**
+        Returns a new empty `Deque`.
+
+        @param maxSize Optional maximum size of the collection. By default, the
+        sequence is unbounded. If `maxSize` is given, any attempt to add
+        more items will cause the method to throw `FullException`.
+    **/
 
     public function new(?maxSize:Int) {
         innerSequence = new CircularBuffer(maxSize);

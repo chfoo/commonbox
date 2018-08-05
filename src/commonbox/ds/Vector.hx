@@ -20,6 +20,15 @@ import haxe.ds.Vector as StdVector;
 @:forwardStatics
 abstract Vector<T>(VectorImpl<T>) to VectorImpl<T>
         from VectorImpl<T> {
+    /**
+        Returns a new `Vector` with default values.
+
+        The default value of each item in the vector is dependent on the
+        standard Haxe Vector. See the Haxe documentation on Vector for details.
+
+        @param length Length of the collection.
+        @param ds Optional standard Vector to be wrapped.
+    **/
     inline public function new(length:Int, ?ds:StdVector<T>) {
         this = new VectorImpl<T>(length, ds);
     }
@@ -41,16 +50,12 @@ class VectorImpl<T> extends WrappedVectorImpl<T> {
         Returns a new `Vector` from the given collection.
     **/
     public static function fromCollection<T>(other:Collection<T>):Vector<T> {
-        var items = new StdArray<T>();
+        var vector = new Vector<T>(other.length);
+        var index = 0;
 
         for (item in other) {
-            items.push(item);
-        }
-
-        var vector = new Vector<T>(items.length);
-
-        for (index in 0...items.length) {
-            vector.set(index, items[index]);
+            vector.set(index, item);
+            index += 1;
         }
 
         return vector;

@@ -25,6 +25,10 @@ import commonbox.adapter.MappingUpgrade;
 **/
 class HashMap<K:Equatable,V> extends MappingUpgrade<K,V>
         implements Mapping<K,V> {
+
+    /**
+        Returns a new empty `HashMap`.
+    **/
     public function new() {
         super(new IntBucketMap(), IntBucketMap.new);
     }

@@ -16,6 +16,9 @@ import commonbox.adapter.SetUpgrade;
     | add/remove | O(1) average. O(n) for Any/Dynamic. |
 **/
 class Set<T> extends SetUpgrade<T> implements ISet<T> {
+    /**
+        Returns a new empty `Set`.
+    **/
     public function new() {
         super(new MapSet(), MapSet.new);
     }
