@@ -1,8 +1,8 @@
 Change Log
 ==========
 
-Unreleased
-----------
+0.4.0 2018-08-05
+----------------
 
 * Fixed `fromIndex` parameter not respected in `Sequence.indexOf`.
 * Added `Sequence.lastIndexOf`.
