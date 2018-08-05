@@ -6,6 +6,7 @@ Unreleased
 
 * Fixed `fromIndex` parameter not respected in `Sequence.indexOf`.
 * Added `Sequence.lastIndexOf`.
+* Added `CollectionTools` having `join()`.
 
 
 0.3.0 (2018-07-02)
